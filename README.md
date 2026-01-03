@@ -9,38 +9,125 @@ A Claude Code plugin for autonomously solving Fully Homomorphic Encryption (FHE)
 - **Multi-Category Support**: Black-box, white-box OpenFHE, and ML inference challenges
 - **OpenFHE Mastery**: Comprehensive C++ and Python API patterns
 
+## Quick Start for New Users
+
+1. **Install the plugin** (one time only):
+   ```bash
+   /plugin marketplace add jqxue1999/fhe-challenge-solver
+   /plugin install fhe-challenge-solver
+   ```
+
+2. **Navigate to any FHE challenge** on your machine:
+   ```bash
+   cd /path/to/your/fhe_challenge/black_box/challenge_sign
+   ```
+
+3. **Run the solver**:
+   ```bash
+   /fhe-challenge-solver:fhe-solve
+   ```
+
+That's it! The plugin will autonomously solve the challenge and generate results in `artifacts/`.
+
 ## Installation
 
-### Local Testing
+### Option 1: Install from GitHub (Recommended)
+
+This is the easiest way for end users. The plugin will be available globally across all your projects.
 
 ```bash
-# Test the plugin from this directory
-claude --plugin-dir /home/jiaq/Research/Code/CC
-```
-
-### From GitHub (after publishing)
-
-```bash
-# Add from GitHub repository
-/plugin marketplace add yourusername/fhe-challenge-solver
+# Add the marketplace
+/plugin marketplace add jqxue1999/fhe-challenge-solver
 
 # Install the plugin
 /plugin install fhe-challenge-solver
+
+# Now you can use it from any directory!
+cd /path/to/your/project
+/fhe-challenge-solver:fhe-solve /path/to/fhe_challenge
+```
+
+### Option 2: Install Locally (For Development/Testing)
+
+Clone the repository to any location on your machine:
+
+```bash
+# Clone to your preferred location
+cd ~/plugins  # or anywhere you like
+git clone https://github.com/jqxue1999/fhe-challenge-solver.git
+
+# Use the plugin from any project directory
+cd /path/to/your/project
+claude --plugin-dir ~/plugins/fhe-challenge-solver
+
+# Your command is now available
+/fhe-challenge-solver:fhe-solve /path/to/challenge
+```
+
+### Option 3: Download and Test Without Git
+
+```bash
+# Download the plugin
+mkdir -p ~/claude-plugins
+cd ~/claude-plugins
+curl -L https://github.com/jqxue1999/fhe-challenge-solver/archive/refs/heads/main.zip -o fhe-challenge-solver.zip
+unzip fhe-challenge-solver.zip
+mv fhe-challenge-solver-main fhe-challenge-solver
+
+# Use from your project
+cd /path/to/your/fhe/challenges
+claude --plugin-dir ~/claude-plugins/fhe-challenge-solver
 ```
 
 ## Usage
 
+The plugin works independently from your project files. You can use it in any directory.
+
 ### Solve an FHE Challenge
 
 ```bash
-# Navigate to challenge directory
-cd /path/to/fhe_challenge/black_box/challenge_sign
-
-# Run the autonomous solver
+# Option 1: Navigate to the challenge directory first
+cd /path/to/your/fhe_challenges/black_box/challenge_sign
 /fhe-challenge-solver:fhe-solve
 
-# Or provide path as argument
-/fhe-challenge-solver:fhe-solve /path/to/challenge_directory
+# Option 2: Provide the challenge path as an argument from anywhere
+cd /path/to/your/workspace
+/fhe-challenge-solver:fhe-solve /path/to/fhe_challenges/black_box/challenge_sign
+
+# Option 3: Use relative paths
+cd /path/to/your/fhe_challenges
+/fhe-challenge-solver:fhe-solve ./black_box/challenge_sign
+```
+
+### Where Files Are Modified
+
+The plugin modifies files **inside the challenge directory**, not in the plugin directory:
+- Edits: `<challenge_dir>/templates/openfhe/yourSolution.cpp` (or `app.py`)
+- Creates: `<challenge_dir>/artifacts/metrics.json`
+- Creates: `<challenge_dir>/artifacts/run.log`
+
+Your plugin installation and your FHE challenges are completely separate!
+
+**Directory Structure Example:**
+```
+User's Machine:
+├── ~/claude-plugins/fhe-challenge-solver/    ← Plugin installation (read-only)
+│   ├── .claude-plugin/
+│   ├── agents/
+│   ├── skills/
+│   └── commands/
+│
+└── ~/projects/my-fhe-research/                ← User's work directory
+    └── fhe_challenges/
+        └── black_box/
+            └── challenge_sign/                ← Challenge directory (modified)
+                ├── templates/
+                │   └── openfhe/
+                │       └── yourSolution.cpp   ← Plugin edits this
+                ├── artifacts/                 ← Plugin creates this
+                │   ├── metrics.json
+                │   └── run.log
+                └── tests/
 ```
 
 ## Plugin Components
