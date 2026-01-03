@@ -11,10 +11,10 @@ A Claude Code plugin for autonomously solving Fully Homomorphic Encryption (FHE)
 
 ## Quick Start for New Users
 
-1. **Install the plugin** (one time only):
+1. **Clone the plugin** to your preferred location:
    ```bash
-   /plugin marketplace add jqxue1999/fhe-challenge-solver
-   /plugin install fhe-challenge-solver
+   cd ~
+   git clone https://github.com/jqxue1999/fhe-challenge-solver.git
    ```
 
 2. **Navigate to any FHE challenge** on your machine:
@@ -22,8 +22,10 @@ A Claude Code plugin for autonomously solving Fully Homomorphic Encryption (FHE)
    cd /path/to/your/fhe_challenge/black_box/challenge_sign
    ```
 
-3. **Run the solver**:
+3. **Start Claude Code with the plugin** and run the solver:
    ```bash
+   claude --plugin-dir ~/fhe-challenge-solver
+   # Then use the command:
    /fhe-challenge-solver:fhe-solve
    ```
 
@@ -31,40 +33,36 @@ That's it! The plugin will autonomously solve the challenge and generate results
 
 ## Installation
 
-### Option 1: Install from GitHub (Recommended)
-
-This is the easiest way for end users. The plugin will be available globally across all your projects.
-
-```bash
-# Add the marketplace
-/plugin marketplace add jqxue1999/fhe-challenge-solver
-
-# Install the plugin
-/plugin install fhe-challenge-solver
-
-# Now you can use it from any directory!
-cd /path/to/your/project
-/fhe-challenge-solver:fhe-solve /path/to/fhe_challenge
-```
-
-### Option 2: Install Locally (For Development/Testing)
+### Option 1: Clone and Use with --plugin-dir (Recommended)
 
 Clone the repository to any location on your machine:
 
 ```bash
 # Clone to your preferred location
-cd ~/plugins  # or anywhere you like
+cd ~  # or ~/plugins, or anywhere you like
 git clone https://github.com/jqxue1999/fhe-challenge-solver.git
 
-# Use the plugin from any project directory
-cd /path/to/your/project
-claude --plugin-dir ~/plugins/fhe-challenge-solver
+# Navigate to your FHE challenge directory
+cd /path/to/your/fhe_challenges
+
+# Start Claude Code with the plugin
+claude --plugin-dir ~/fhe-challenge-solver
 
 # Your command is now available
-/fhe-challenge-solver:fhe-solve /path/to/challenge
+/fhe-challenge-solver:fhe-solve ./black_box/challenge_sign
 ```
 
-### Option 3: Download and Test Without Git
+**Tip:** Add an alias to your shell config for easier access:
+```bash
+# Add to ~/.bashrc or ~/.zshrc
+alias claude-fhe='claude --plugin-dir ~/fhe-challenge-solver'
+
+# Then use:
+claude-fhe
+/fhe-challenge-solver:fhe-solve
+```
+
+### Option 2: Download Without Git
 
 ```bash
 # Download the plugin
@@ -78,6 +76,10 @@ mv fhe-challenge-solver-main fhe-challenge-solver
 cd /path/to/your/fhe/challenges
 claude --plugin-dir ~/claude-plugins/fhe-challenge-solver
 ```
+
+### Future: Install via Marketplace
+
+To enable `/plugin install` command, this plugin would need to be added to a Claude Code marketplace. For now, use `--plugin-dir` as shown above. See the [marketplace documentation](https://code.claude.com/docs/en/discover-plugins) for details on creating a marketplace.
 
 ## Usage
 
