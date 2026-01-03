@@ -6,11 +6,11 @@ Autonomously solve an FHE challenge end-to-end with iterative improvement until 
 
 ```bash
 # Navigate to challenge directory first
-cd /home/yifei/data/cipherbench/aideml/fhe_challenge/black_box/challenge_sign
-/fhe-challenge-autopilot:fhe-solve
+cd /path/to/fhe_challenge/black_box/challenge_sign
+/fhe-challenge-solver:fhe-solve
 
 # Or provide path as argument
-/fhe-challenge-autopilot:fhe-solve /path/to/challenge_directory
+/fhe-challenge-solver:fhe-solve /path/to/challenge_directory
 ```
 
 ## What It Does
@@ -126,14 +126,14 @@ A solution is successful when:
 
 ```bash
 # Black-box challenge
-cd /home/yifei/data/cipherbench/aideml/fhe_challenge/black_box/challenge_sign
-/fhe-challenge-autopilot:fhe-solve
+cd /path/to/fhe_challenge/black_box/challenge_sign
+/fhe-challenge-solver:fhe-solve
 
 # White-box OpenFHE challenge
-cd /home/yifei/data/cipherbench/aideml/fhe_challenge/white_box/openfhe/challenge_max
-/fhe-challenge-autopilot:fhe-solve
+cd /path/to/fhe_challenge/white_box/openfhe/challenge_max
+/fhe-challenge-solver:fhe-solve
 
 # White-box ML challenge
-cd /home/yifei/data/cipherbench/aideml/fhe_challenge/white_box/ml_inference/challenge_house_prediction
-/fhe-challenge-autopilot:fhe-solve
+cd /path/to/fhe_challenge/white_box/ml_inference/challenge_house_prediction
+/fhe-challenge-solver:fhe-solve
 ```
