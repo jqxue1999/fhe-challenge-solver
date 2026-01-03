@@ -65,15 +65,21 @@ claude --plugin-dir /home/jiaq/Research/Code/CC
 
 ### Install from GitHub (After Publishing)
 
-Anyone can install your plugin:
+Anyone can use your plugin:
 
 ```bash
-# Add marketplace
-/plugin marketplace add YOUR_USERNAME/fhe-challenge-solver
+# Clone the plugin
+git clone https://github.com/jqxue1999/fhe-challenge-solver.git ~/fhe-challenge-solver
 
-# Install plugin
-/plugin install fhe-challenge-solver
+# Use it from their project
+cd /path/to/their/fhe_challenges
+claude --plugin-dir ~/fhe-challenge-solver
+
+# Command is available
+/fhe-challenge-solver:fhe-solve
 ```
+
+**Note:** Individual plugins use `--plugin-dir`, not `/plugin marketplace add`. Marketplaces are collections of multiple plugins.
 
 ## What Your Plugin Provides
 
