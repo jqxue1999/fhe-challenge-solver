@@ -1,0 +1,20 @@
+{
+  "name": "fhe-challenge-solver",
+  "displayName": "FHE Challenge Solver",
+  "description": "Autonomous solver for Fully Homomorphic Encryption challenges with specialized skills for OpenFHE, function approximation, encrypted computation, and ML inference.",
+  "version": "1.0.0",
+  "author": "jiaq",
+  "repository": "https://github.com/yourusername/fhe-challenge-solver",
+  "license": "MIT",
+  "keywords": [
+    "fhe",
+    "homomorphic-encryption",
+    "openfhe",
+    "cryptography",
+    "ckks",
+    "machine-learning"
+  ],
+  "compatibility": {
+    "claudeCode": ">=0.1.0"
+  }
+}
