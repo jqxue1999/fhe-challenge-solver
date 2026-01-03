@@ -20,7 +20,7 @@ cd ~/research/fhe_challenges/black_box/challenge_sign
 claude --plugin-dir ~/fhe-challenge-solver
 
 # Run the solver (autonomous, no user input needed)
-/fhe-challenge-solver:fhe-solve
+/fhe-solve
 
 # Output will be in:
 # - artifacts/metrics.json
@@ -35,7 +35,7 @@ cd ~/research/fhe_challenges/white_box/openfhe/challenge_max
 
 claude --plugin-dir ~/fhe-challenge-solver
 
-/fhe-challenge-solver:fhe-solve
+/fhe-solve
 ```
 
 ## Example 3: White-Box ML Challenge
@@ -52,7 +52,7 @@ claude --plugin-dir ~/fhe-challenge-solver
 # 4. Implement FHE inference in templates/openfhe-python/app.py
 # 5. Run ./verify.sh to validate
 
-/fhe-challenge-solver:fhe-solve
+/fhe-solve
 ```
 
 ## Example 4: Specify Challenge Path from Different Directory
@@ -65,10 +65,10 @@ cd ~/workspace
 claude --plugin-dir ~/fhe-challenge-solver
 
 # Provide full path to challenge
-/fhe-challenge-solver:fhe-solve ~/research/fhe_challenges/black_box/challenge_sign
+/fhe-solve ~/research/fhe_challenges/black_box/challenge_sign
 
 # Or relative path
-/fhe-challenge-solver:fhe-solve ../research/fhe_challenges/black_box/challenge_sign
+/fhe-solve ../research/fhe_challenges/black_box/challenge_sign
 ```
 
 ## Example 5: Using Shell Alias (Recommended for Frequent Use)
@@ -81,7 +81,7 @@ source ~/.bashrc
 # Now you can simply type:
 cd ~/research/fhe_challenges/black_box/challenge_sigmoid
 claude-fhe
-/fhe-challenge-solver:fhe-solve
+/fhe-solve
 ```
 
 ## Example 6: Batch Processing Multiple Challenges
@@ -99,7 +99,7 @@ CHALLENGES=(
 for challenge in "${CHALLENGES[@]}"; do
   echo "Solving: $challenge"
   cd ~/research/fhe_challenges/$challenge
-  claude --plugin-dir ~/fhe-challenge-solver -c "/fhe-challenge-solver:fhe-solve"
+  claude --plugin-dir ~/fhe-challenge-solver -c "/fhe-solve"
 done
 EOF
 
@@ -120,7 +120,7 @@ cd ~/my-fhe-solver
 # Test your changes
 cd ~/research/fhe_challenges/black_box/challenge_sign
 claude --plugin-dir ~/my-fhe-solver
-/fhe-challenge-solver:fhe-solve
+/fhe-solve
 ```
 
 ## Understanding Output Artifacts

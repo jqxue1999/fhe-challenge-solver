@@ -25,8 +25,8 @@ A Claude Code plugin for autonomously solving Fully Homomorphic Encryption (FHE)
 3. **Start Claude Code with the plugin** and run the solver:
    ```bash
    claude --plugin-dir ~/fhe-challenge-solver
-   # Then use the command:
-   /fhe-challenge-solver:fhe-solve
+   # Then use the command (note: just /fhe-solve without namespace):
+   /fhe-solve
    ```
 
 That's it! The plugin will autonomously solve the challenge and generate results in `artifacts/`.
@@ -48,8 +48,8 @@ cd /path/to/your/fhe_challenges
 # Start Claude Code with the plugin
 claude --plugin-dir ~/fhe-challenge-solver
 
-# Your command is now available
-/fhe-challenge-solver:fhe-solve ./black_box/challenge_sign
+# Your command is now available (use /fhe-solve without namespace)
+/fhe-solve ./black_box/challenge_sign
 ```
 
 **Tip:** Add an alias to your shell config for easier access:
@@ -59,7 +59,7 @@ alias claude-fhe='claude --plugin-dir ~/fhe-challenge-solver'
 
 # Then use:
 claude-fhe
-/fhe-challenge-solver:fhe-solve
+/fhe-solve
 ```
 
 ### Option 2: Download Without Git
@@ -90,15 +90,15 @@ The plugin works independently from your project files. You can use it in any di
 ```bash
 # Option 1: Navigate to the challenge directory first
 cd /path/to/your/fhe_challenges/black_box/challenge_sign
-/fhe-challenge-solver:fhe-solve
+/fhe-solve
 
 # Option 2: Provide the challenge path as an argument from anywhere
 cd /path/to/your/workspace
-/fhe-challenge-solver:fhe-solve /path/to/fhe_challenges/black_box/challenge_sign
+/fhe-solve /path/to/fhe_challenges/black_box/challenge_sign
 
 # Option 3: Use relative paths
 cd /path/to/your/fhe_challenges
-/fhe-challenge-solver:fhe-solve ./black_box/challenge_sign
+/fhe-solve ./black_box/challenge_sign
 ```
 
 ### Where Files Are Modified
