@@ -448,5 +448,6 @@ After challenge understanding is complete:
 1. **Route to `ml-pipeline`** if `has_training_data` is true
 2. **Route to `function-approximation`** if nonlinear functions detected
 3. **Route to `encrypted-computation`** if matrix/comparison/sorting detected
-4. **Always use `openfhe-mastery`** for API patterns
-5. **Always use `solution-engineering`** for template adaptation and validation
+4. **Route to `fhe-verification-framework`** for complex algorithms requiring NumPy simulation before OpenFHE
+5. **Always use `openfhe-mastery`** for API patterns
+6. **Always use `solution-engineering`** for template adaptation and validation

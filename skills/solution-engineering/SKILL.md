@@ -281,8 +281,37 @@ def recover_from_error(error_log, solution_code):
 **Key Parameters:**
 - `mult_depth`: Maximum multiplications before noise overflow
 - `ring_dimension`: Affects security and slot count
-- `indexes_for_rotation_key`: Available rotation indices
+- `indexes_for_rotation_key`: Available rotation indices (can be modified for custom algorithms)
+- `batch_size`: Number of SIMD slots (must be power of 2 for CKKS)
 - `enable_bootstrapping`: If true, can refresh ciphertext
+
+**Modifying config.json for White-Box Challenges:**
+
+For white-box challenges, you can customize encryption parameters in `config.json`:
+
+```json
+// Example: 32×32 image with 3×3 convolution
+{
+  "indexes_for_rotation_key": [1, 2, 32, 33, 34, 64, 65, 66],  // For conv
+  "mult_depth": 10,           // Sufficient for Conv + ReLU + Pool
+  "batch_size": 1024,         // Next power of 2 after 32*32=1024
+  "scale_mod_size": 50,
+  "first_mod_size": 60
+}
+
+// Example: Matrix operations
+{
+  "indexes_for_rotation_key": [1, 2, 3, ..., 127],  // For 128×128 matrix
+  "mult_depth": 5,
+  "batch_size": 16384         // 2^14 for 128*128
+}
+```
+
+**Common Adjustments:**
+- Add rotation indices for your algorithm (convolution kernel size, matrix dimensions)
+- Increase `mult_depth` if "level is negative" error
+- Ensure `batch_size` is power of 2 and ≥ data size
+- Adjust `scale_mod_size` for better precision (40-60 typical)
 
 ---
 
@@ -409,3 +438,4 @@ for iteration in range(max_iterations):
 | `function-approximation` | Provides polynomial implementation code |
 | `encrypted-computation` | Provides algorithm implementation code |
 | `ml-pipeline` | Provides trained weights and inference code |
+| `fhe-verification-framework` | Use NumPy simulation to verify algorithm before OpenFHE implementation |

@@ -367,4 +367,5 @@ Ciphertext<DCRTPoly> eval(CryptoContext<DCRTPoly> cc, Ciphertext<DCRTPoly> input
 | `challenge-understanding` | Determines if this skill is needed |
 | `openfhe-mastery` | Provides `EvalChebyshevSeries`, `EvalLogistic` APIs |
 | `ml-pipeline` | Uses activation approximations for neural network inference |
+| `fhe-verification-framework` | Test polynomial approximations with NumPy before OpenFHE |
 | `solution-engineering` | Injects approximation code into templates |

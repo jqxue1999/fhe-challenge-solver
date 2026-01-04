@@ -455,4 +455,5 @@ site:github.com/openfheorg/openfhe-development/releases v1.1.4
 | `function-approximation` | Provides Chebyshev coefficients → use `EvalChebyshevSeries` |
 | `encrypted-computation` | Provides algorithm → implement with OpenFHE operations |
 | `ml-pipeline` | Provides trained weights → implement FHE inference |
+| `fhe-verification-framework` | Validates algorithm with NumPy, then translates to OpenFHE API |
 | `solution-engineering` | Uses OpenFHE patterns for template adaptation |

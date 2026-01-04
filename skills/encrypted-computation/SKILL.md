@@ -682,5 +682,6 @@ Ciphertext<DCRTPoly> soft_max(CryptoContext<DCRTPoly> cc,
 | `challenge-understanding` | Determines if this skill is needed |
 | `openfhe-mastery` | Provides rotation, multiplication APIs |
 | `function-approximation` | Provides sign approximation for comparisons |
+| `fhe-verification-framework` | Verify complex algorithms (CNN, sorting) with NumPy before OpenFHE |
 | `ml-pipeline` | Uses matrix operations for layer computations |
 | `solution-engineering` | Injects algorithm code into templates |

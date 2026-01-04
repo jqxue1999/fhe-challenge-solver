@@ -30,24 +30,38 @@ cd /path/to/fhe_challenge/black_box/challenge_sign
 
 3. **Determine skills needed**:
    - `function-approximation` for sigmoid, relu, gelu, softmax, sign, exp, log
-   - `encrypted-computation` for matrix ops, sorting, comparison, KNN, bit ops
+   - `encrypted-computation` for matrix ops, sorting, comparison, KNN, bit ops, CNN convolution
    - `ml-pipeline` for challenges with training data
+   - `fhe-verification-framework` for verifying complex algorithms before OpenFHE translation
 
 ### Phase 2: Implementation
 
-1. **Adapt template** from `templates/openfhe/` or `templates/openfhe-python/`
+1. **Design algorithm** (for complex operations like CNN):
+   - Use `fhe-verification-framework` to verify with NumPy simulation
+   - Test with restricted operations (add, mult, rotate only)
+   - Validate against ground truth (error < 1e-10)
+
+2. **Adapt template** from `templates/openfhe/` or `templates/openfhe-python/`
    - Edit `yourSolution.cpp` (C++) or `app.py` (Python)
    - Never generate from scratch - always modify existing template
+   - For white-box: customize `config.json` for rotation keys and depth budget
 
-2. **For ML challenges** (when `data/` folder exists):
+3. **For ML challenges** (when `data/` folder exists):
    - Load and analyze training data
    - Train model to R² ≥ 0.85 (regression) or Accuracy ≥ 0.85 (classification)
    - Extract weights for FHE inference
    - Implement FHE inference with trained weights
 
-3. **Apply correct CryptoContext pattern**:
+4. **Apply correct CryptoContext pattern**:
    - Black-box: Load from ciphertext using `GetCryptoContext()`
    - White-box: Load from `--cc` CLI argument
+
+5. **Configure encryption parameters** (white-box only):
+   - Modify `templates/openfhe/config.json`:
+     - Add rotation indices for your algorithm
+     - Set appropriate `mult_depth` (typical: 5-29)
+     - Ensure `batch_size` is power of 2
+     - Adjust `scale_mod_size` for precision (40-60)
 
 ### Phase 3: Validation
 
@@ -68,9 +82,14 @@ cd <challenge_dir>
 
 If validation fails:
 1. Parse error messages
-2. Apply fixes (depth reduction, feature enabling, parameter adjustment)
+2. Apply fixes:
+   - Algorithm bugs: Use `fhe-verification-framework` to debug NumPy simulation
+   - Depth exceeded: Reduce polynomial degree or increase `mult_depth` in config.json
+   - Missing rotation keys: Add indices to `config.json`
+   - Feature not enabled: Add `cc->Enable(PKESchemeFeature::ADVANCEDSHE)`
+   - CryptoContext mismatch: Fix loading pattern (black-box vs white-box)
 3. Re-validate
-4. Repeat until success
+4. Repeat until success (max 10 iterations)
 
 ## Outputs
 

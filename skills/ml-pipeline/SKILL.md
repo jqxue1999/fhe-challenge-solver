@@ -484,4 +484,5 @@ model = nn.Sequential(
 | `openfhe-mastery` | Python/C++ API for FHE inference |
 | `function-approximation` | Activation function approximations |
 | `encrypted-computation` | Matrix operations, argmax |
+| `fhe-verification-framework` | Verify CNN or complex network layers with NumPy before OpenFHE |
 | `solution-engineering` | Template adaptation, validation |
