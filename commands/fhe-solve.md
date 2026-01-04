@@ -38,7 +38,7 @@ cd /path/to/fhe_challenge/black_box/challenge_sign
 
 1. **Design algorithm** (for complex operations like CNN):
    - Use `fhe-verification-framework` to verify with NumPy simulation
-   - Test with restricted operations (add, mult, rotate only)
+   - Test with restricted operations (add, mult, rotate, etc)
    - Validate against ground truth (error < 1e-10)
 
 2. **Adapt template** from `templates/openfhe/` or `templates/openfhe-python/`
